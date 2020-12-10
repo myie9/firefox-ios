@@ -543,24 +543,6 @@ class ShowEtpCoverSheet: HiddenSetting {
     }
 }
 
-class ToggleOnboarding: HiddenSetting {
-    override var title: NSAttributedString? {
-        return NSAttributedString(string: "Debug: Toggle onboarding type", attributes: [NSAttributedString.Key.foregroundColor: UIColor.theme.tableView.rowText])
-    }
-
-    override func onClick(_ navigationController: UINavigationController?) {
-        let onboardingResearch = OnboardingUserResearch()
-        let type = onboardingResearch.onboardingScreenType
-        var newOnboardingType: OnboardingScreenType = .versionV2
-        if type == nil {
-            newOnboardingType = .versionV1
-        } else if type == .versionV2 {
-            newOnboardingType = .versionV1
-        }
-        OnboardingUserResearch().onboardingScreenType = newOnboardingType
-    }
-}
-
 class LeanplumStatus: HiddenSetting {
     let lplumSetupType = LeanPlumClient.shared.lpSetupType()
     override var title: NSAttributedString? {
@@ -583,18 +565,6 @@ class LeanplumStatus: HiddenSetting {
     }
 }
 
-class ClearOnboardingABVariables: HiddenSetting {
-    override var title: NSAttributedString? {
-        // If we are running an A/B test this will also fetch the A/B test variables from leanplum. Re-open app to see the effect.
-        return NSAttributedString(string: "Debug: Clear onboarding AB variables", attributes: [NSAttributedString.Key.foregroundColor: UIColor.theme.tableView.rowText])
-    }
-
-    override func onClick(_ navigationController: UINavigationController?) {
-        settings.profile.prefs.removeObjectForKey(PrefsKeys.IntroSeen)
-        OnboardingUserResearch().onboardingScreenType = nil
-    }
-}
-
 ///Note: We have disabed it until we find best way to test newTabToolbarButton
 //class ToggleNewTabToolbarButton: HiddenSetting {
 //    override var title: NSAttributedString? {
@@ -606,6 +576,18 @@ class ClearOnboardingABVariables: HiddenSetting {
 //        settings.profile.prefs.setBool(!currentValue, forKey: PrefsKeys.ShowNewTabToolbarButton)
 //    }
 //}
+
+class ToggleChronTabs: HiddenSetting {
+    override var title: NSAttributedString? {
+        // If we are running an A/B test this will also fetch the A/B test variables from leanplum. Re-open app to see the effect.
+        return NSAttributedString(string: "Debug: Toggle chronological tabs", attributes: [NSAttributedString.Key.foregroundColor: UIColor.theme.tableView.rowText])
+    }
+
+    override func onClick(_ navigationController: UINavigationController?) {
+        let currentValue = settings.profile.prefs.boolForKey(PrefsKeys.ChronTabsPrefKey) ?? false
+        settings.profile.prefs.setBool(!currentValue, forKey: PrefsKeys.ChronTabsPrefKey)
+    }
+}
 
 // Show the current version of Firefox
 class VersionSetting: Setting {

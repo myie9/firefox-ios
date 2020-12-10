@@ -58,6 +58,17 @@ search:
     notification_emails:
       - firefox-ios@mozilla.com
     expires: "2021-07-01"
+  in_content:
+    type: labeled_counter
+    description: |
+      Records the type of interaction a user has on SERP pages.
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7602
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7702
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-05-07"
 
 # Preference metrics
 preferences:
@@ -325,6 +336,22 @@ tabs:
     notification_emails:
       - firefox-ios@mozilla.com
     expires: "2021-07-01"
+  close_all:
+    type: labeled_counter
+    description: |
+      The count of times the user closes all tabs. Increments the
+      appropriate label when either a normal or private tab
+      is closed.
+    labels:
+      - normal-tab
+      - private-tab
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7008
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7008
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-10-21"
   new_tab_pressed:
     type: counter
     description: |
@@ -337,6 +364,39 @@ tabs:
     notification_emails:
       - firefox-ios@mozilla.com
     expires: "2021-07-21"
+  click_tab:
+    type: event
+    description: |
+      Recorded when a user clicks an open tab
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7526
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7635
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-11-03"
+  open_tab_tray:
+    type: event
+    description: |
+      Recorded when a user opens the tab tray
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7526
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7635
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-11-03"
+  close_tab_tray:
+    type: event
+    description: |
+      Recorded when a user closes the tab tray
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7526
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7635
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-11-03"
 
 # Bookmark metrics
 bookmarks:
@@ -613,3 +673,100 @@ deletion:
     notification_emails:
       - firefox-ios@mozilla.com
     expires: never
+
+# iOS 14 widget metrics
+# m: medium, s: small, l: large
+widget:
+  m_tabs_open_url:
+    type: counter
+    description: |
+      Counts how many times the medium tabs widget opens url
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  l_tabs_open_url:
+    type: counter
+    description: |
+      Counts how many times the large tabs widget opens url
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  s_quick_action_search:
+    type: counter
+    description: |
+      Counts how many times small quick action
+      widget opens firefox for regular search
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  m_quick_action_search:
+    type: counter
+    description: |
+      Counts how many times medium quick action
+      widget opens firefox for regular search
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  m_quick_action_private_search:
+    type: counter
+    description: |
+       Counts how many times medium quick action
+       widget opens firefox for private search
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  m_quick_action_copied_link:
+    type: counter
+    description: |
+      Counts how many times medium quick action
+      widget opens copied links
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  m_quick_action_close_private:
+    type: counter
+    description: |
+      Counts how many times medium quick action
+      widget closes private tabs
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
+  m_top_sites_widget:
+    type: counter
+    description: |
+      Counts how many times user opens top site tabs
+    bugs:
+      - https://github.com/mozilla-mobile/firefox-ios/issues/7097
+    data_reviews:
+      - https://github.com/mozilla-mobile/firefox-ios/pull/7681
+    notification_emails:
+      - firefox-ios@mozilla.com
+    expires: "2021-12-01"
