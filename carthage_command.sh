@@ -10,7 +10,12 @@ echo 'GCC_TREAT_WARNINGS_AS_ERRORS=NO' >> /tmp/tmp.xcconfig
 export XCODE_XCCONFIG_FILE=/tmp/tmp.xcconfig
 fi
 
-carthage bootstrap $CARTHAGE_VERBOSE --platform ios --color auto --cache-builds
+# ulimit -n 5000
+ulimit -n 88888
+ulimit -a
+
+# carthage bootstrap $CARTHAGE_VERBOSE --platform ios --color auto #--cache-builds
+carthage checkout --no-use-binaries
 
 # if [[ -d Carthage/Build/iOS/Static/MozillaAppServices.framework ]]; then
 #  echo Move local build of AppServices from Static
