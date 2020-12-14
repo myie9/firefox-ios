@@ -15,7 +15,7 @@ ulimit -n 88888
 ulimit -a
 
 # carthage bootstrap $CARTHAGE_VERBOSE --platform ios --color auto #--cache-builds
-carthage checkout --no-use-binaries
+# carthage checkout --no-use-binaries
 
 # if [[ -d Carthage/Build/iOS/Static/MozillaAppServices.framework ]]; then
 #  echo Move local build of AppServices from Static
